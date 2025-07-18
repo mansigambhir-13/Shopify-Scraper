@@ -1,0 +1,42 @@
+version: '3.8'
+
+# SQLite Version - No database server needed!
+# SQLite creates a local file, so we don't need MySQL or any other database service
+
+services:
+  # No database service needed for SQLite!
+  # SQLite creates a local file: shopify_insights.db
+  
+  # Optional: If you want to run the app in Docker later
+  # app:
+  #   build: .
+  #   container_name: shopify_insights_app
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - ./shopify_insights.db:/app/shopify_insights.db
+  #     - ./logs:/app/logs
+  #   environment:
+  #     - DATABASE_URL=sqlite:///./shopify_insights.db
+
+  # Optional: SQLite Browser (Web UI to view your database)
+  sqlite-web:
+    image: coleifer/sqlite-web
+    container_name: shopify_insights_sqlite_browser
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./shopify_insights.db:/data/shopify_insights.db:ro
+    command: sqlite_web -H 0.0.0.0 -x /data/shopify_insights.db
+    profiles:
+      - tools
+
+# To use the SQLite browser:
+# docker-compose --profile tools up sqlite-web
+# Then visit: http://localhost:8081
+
+volumes: {}
+
+networks: {}
