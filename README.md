@@ -314,20 +314,3 @@ pip list | grep beautifulsoup4
 
 This project is licensed under the MIT License.
 
-## 🤝 **Contributing**
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test the changes
-5. Submit a pull request
-
-## 📞 **Support**
-
-- **Issues** - Open a GitHub issue for bugs
-- **Questions** - Check the API documentation at `/docs`
-- **Testing** - Use the health endpoint to verify the application is running
-
----
-
-**Built for e-commerce analysis and competitive research** 🚀
