@@ -3,445 +3,331 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-3.0+-orange.svg)](https://www.sqlite.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A comprehensive Python application that extracts detailed insights from Shopify stores without using official APIs. Built with FastAPI, this application provides robust scraping capabilities, AI-powered analysis, and structured data storage.
+A Python application that extracts insights from Shopify stores using web scraping techniques. Built with FastAPI, this application provides automated data extraction and storage for e-commerce analysis.
 
+## 🎯 **Overview**
 
-## 🎯 **Features**
+This application automatically extracts key business information from Shopify stores including product catalogs, brand details, social media handles, and contact information. All data is stored in a local SQLite database for analysis.
 
-### **Mandatory Features ✅**
-- **📦 Product Catalog** - Complete product extraction from `/products.json`
-- **⭐ Hero Products** - Featured products from homepage
-- **🔒 Privacy Policy** - Automated policy content extraction
-- **↩️ Return/Refund Policies** - Return policy discovery and extraction
-- **❓ Brand FAQs** - Structured FAQ extraction with AI enhancement
-- **📱 Social Media Handles** - Instagram, Facebook, TikTok, Twitter discovery
-- **📞 Contact Information** - Email and phone number extraction
-- **🏢 Brand Context** - Brand story, description, and company information
-- **🔗 Important Links** - Order tracking, blogs, support, and key pages
+## ✅ **Implemented Features**
 
-### **Bonus Features 🚀**
-- **🤖 AI-Powered Analysis** - OpenAI integration for enhanced data structuring
-- **🗄️ Database Persistence** - SQLite/MySQL with proper relationships
-- **📊 RESTful API** - Clean, documented endpoints with OpenAPI/Swagger
-- **🔄 Background Processing** - Non-blocking database operations
-- **📝 Comprehensive Logging** - Structured logging with rotation
-- **🐳 Docker Support** - Easy deployment and development setup
-- **✅ Input Validation** - Robust data validation with Pydantic
-- **🚀 Health Monitoring** - Health check and monitoring endpoints
+- **📦 Product Catalog Extraction** - Extracts products from `/products.json` endpoint
+- **🏪 Brand Information** - Captures brand name and domain details  
+- **📱 Social Media Discovery** - Finds Instagram, Facebook, Twitter, TikTok links
+- **📞 Contact Information** - Extracts email addresses and phone numbers
+- **💾 Database Storage** - Stores all data in SQLite database
+- **🔍 Health Monitoring** - Health check endpoint for system status
+- **📖 API Documentation** - Interactive Swagger/OpenAPI documentation
+- **⚡ RESTful API** - Clean POST endpoint for data extraction
+- **🛡️ Error Handling** - Graceful handling of failed extractions
+- **📝 Logging** - Application logging for debugging
 
-## 🏗️ **Architecture**
+## 🏗️ **Project Structure**
 
 ```
 shopify-insights-fetcher/
-├── app/
-│   ├── __init__.py                 # Application package
-│   ├── models/                     # Data models
-│   │   ├── __init__.py
-│   │   ├── requests.py            # Request validation models
-│   │   └── responses.py           # Response models
-│   ├── database/                   # Database layer
-│   │   ├── __init__.py
-│   │   ├── database.py            # SQLAlchemy configuration
-│   │   └── models.py              # Database models
-│   ├── services/                   # Business logic
-│   │   ├── __init__.py
-│   │   └── shopify_scraper.py     # Core scraping service
-│   └── utils/                      # Utilities
-│       ├── __init__.py
-│       ├── data_processor.py      # Data cleaning utilities
-│       ├── validators.py          # Validation functions
-│       └── logger.py              # Logging configuration
-├── tests/                          # Test suite
-├── logs/                          # Application logs
-├── main.py                        # FastAPI application
-├── requirements.txt               # Python dependencies
-├── .env                          # Environment configuration
-├── .gitignore                    # Git ignore rules
-└── README.md                     # This file
+├── main.py                 # FastAPI application (main file)
+├── requirements.txt        # Python dependencies  
+├── .env                   # Environment configuration
+├── shopify_insights.db    # SQLite database (created on first run)
+├── logs/                  # Application logs (created automatically)
+└── README.md              # This file
 ```
 
-## 🚀 **Quick Start**
+## 🛠️ **Installation & Setup**
 
 ### **Prerequisites**
 - Python 3.8 or higher
-- Git
-- Optional: Docker for database setup
+- Virtual environment (recommended)
 
-### **1. Clone Repository**
+### **Quick Start**
+
+1. **Clone/Download the project**
 ```bash
-git clone <repository-url>
 cd shopify-insights-fetcher
 ```
 
-### **2. Create Virtual Environment**
+2. **Create Virtual Environment**
 ```bash
 # Windows
 python -m venv venv
 venv\Scripts\activate
 
-# macOS/Linux  
+# macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### **3. Install Dependencies**
+3. **Install Dependencies**
 ```bash
-pip install -r requirements.txt
+pip install fastapi uvicorn pydantic requests beautifulsoup4 lxml python-dotenv sqlalchemy
 ```
 
-### **4. Environment Setup**
-
-**Option A: Automated Setup (Recommended)**
-```bash
-python setup_env.py
-```
-
-**Option B: Manual Setup**
-```bash
-# Copy environment template
-cp .env.template .env
-
-# Edit .env with your settings
-# DATABASE_URL=sqlite:///./shopify_insights.db
-```
-
-### **5. Validate Configuration**
-```bash
-python validate_env.py
-```
-
-### **6. Test Database**
-```bash
-python test_simple_sqlite.py
-```
-
-### **7. Start Application**
+4. **Start Application**
 ```bash
 python main.py
 ```
 
-### **8. Access Application**
-- **API Documentation**: http://localhost:8000/docs
-- **Alternative Docs**: http://localhost:8000/redoc
-- **Health Check**: http://localhost:8000/health
+5. **Verify Installation**
+```bash
+# Health check
+curl http://localhost:8000/health
 
-## 📖 **API Usage**
+# API documentation
+# Visit: http://localhost:8000/docs
+```
 
-### **Extract Store Insights**
+## 📖 **Usage**
 
-**Using curl:**
+### **API Endpoints**
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/health` | GET | Application health check |
+| `/docs` | GET | Interactive API documentation |
+| `/` | GET | Basic application info |
+| `/api/v1/extract-insights` | POST | Extract insights from Shopify store |
+| `/api/v1/status` | GET | Application status |
+
+### **Extract Insights**
+
+**Request:**
 ```bash
 curl -X POST "http://localhost:8000/api/v1/extract-insights" \
      -H "Content-Type: application/json" \
-     -d '{
-       "website_url": "https://gymshark.com"
-     }'
+     -d '{"website_url": "https://allbirds.com"}'
 ```
 
-**Using Python:**
-```python
-import requests
-
-response = requests.post(
-    "http://localhost:8000/api/v1/extract-insights",
-    json={"website_url": "https://gymshark.com"}
-)
-print(response.json())
+**PowerShell:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/api/v1/extract-insights" -Method POST -ContentType "application/json" -Body '{"website_url": "https://allbirds.com"}'
 ```
 
-### **Response Example**
+**Response Example:**
 ```json
 {
   "success": true,
   "message": "Insights extracted successfully",
   "data": {
-    "brand_name": "Gymshark",
-    "domain": "gymshark.com",
-    "total_products": 150,
+    "brand_name": "Allbirds",
+    "domain": "allbirds.com",
+    "website_url": "https://allbirds.com",
+    "total_products": 156,
     "product_catalog": [
       {
-        "title": "Vital Seamless Leggings",
-        "price": "50.00",
-        "vendor": "Gymshark",
-        "product_url": "https://gymshark.com/products/vital-seamless-leggings"
-      }
-    ],
-    "privacy_policy": {
-      "title": "Privacy Policy",
-      "content": "Gymshark values your privacy...",
-      "url": "https://gymshark.com/pages/privacy-policy"
-    },
-    "faqs": [
-      {
-        "question": "What is your return policy?",
-        "answer": "We offer 30-day returns..."
+        "id": 123456789,
+        "title": "Tree Runners",
+        "handle": "tree-runners",
+        "vendor": "Allbirds",
+        "product_type": "Shoes",
+        "variants": [
+          {
+            "price": "98.00",
+            "title": "Allbirds Tree Runners"
+          }
+        ]
       }
     ],
     "social_handles": [
       {
-        "platform": "instagram", 
-        "url": "https://instagram.com/gymshark",
-        "username": "gymshark"
+        "platform": "instagram",
+        "url": "https://instagram.com/allbirds",
+        "username": "allbirds"
       }
     ],
-    "extraction_success": true
+    "contact_info": {
+      "emails": ["help@allbirds.com"]
+    },
+    "extraction_timestamp": "2025-07-18T21:54:05.892000",
+    "extraction_success": true,
+    "scraping_method": "comprehensive"
   }
 }
 ```
 
 ## 🗄️ **Database**
 
-### **SQLite (Default)**
-- **File-based**: `shopify_insights.db`
-- **Zero setup**: Works out of the box
-- **Perfect for**: Development, testing, demos
+### **SQLite Database**
+Data is automatically stored in `shopify_insights.db` with the following structure:
 
-### **MySQL (Optional)**
-```bash
-# Update .env file
-DATABASE_URL=mysql+pymysql://user:password@localhost:3306/shopify_insights
+**Main Table: `brand_insights`**
+- `id` - Primary key
+- `brand_name` - Extracted brand name
+- `domain` - Store domain (e.g., allbirds.com)
+- `website_url` - Full store URL
+- `total_products` - Number of products found
+- `product_catalog` - JSON data of products
+- `social_handles` - JSON data of social media links
+- `contact_info` - JSON data of contact details
+- `extraction_data` - Full JSON response
+- `extraction_success` - Boolean success status
+- `created_at` - Timestamp of extraction
+- `updated_at` - Last update timestamp
 
-# Or use Docker
-docker-compose up -d mysql
-```
+### **View Database Data**
 
-### **View Data**
-
-**SQLite Browser:**
+**Option 1: SQLite Web Browser**
 ```bash
 pip install sqlite-web
 sqlite_web shopify_insights.db
 # Visit: http://localhost:8080
 ```
 
-**Command Line:**
+**Option 2: Command Line**
 ```bash
 sqlite3 shopify_insights.db
 .tables
-SELECT * FROM brand_insights;
+SELECT brand_name, domain, total_products FROM brand_insights;
 ```
 
 ## 🧪 **Testing**
 
-### **Run Tests**
-```bash
-# All tests
-python -m pytest
-
-# Specific test file
-python -m pytest tests/test_basic.py -v
-
-# With coverage
-python -m pytest --cov=app tests/
-```
-
 ### **Manual Testing**
+Test with known Shopify stores:
+
 ```bash
-# Health check
+# Test health endpoint
 curl http://localhost:8000/health
 
-# Test with known Shopify stores
+# Test with different Shopify stores
 curl -X POST "http://localhost:8000/api/v1/extract-insights" \
      -H "Content-Type: application/json" \
-     -d '{"website_url": "https://allbirds.com"}'
+     -d '{"website_url": "https://gymshark.com"}'
+
+curl -X POST "http://localhost:8000/api/v1/extract-insights" \
+     -H "Content-Type: application/json" \
+     -d '{"website_url": "https://bombas.com"}'
 ```
 
-## 🎯 **Use Cases**
-
-### **E-commerce Research**
-- Analyze competitor product catalogs
-- Compare pricing strategies  
-- Study customer service approaches
-- Monitor policy changes
-
-### **Market Analysis**
-- Identify market gaps and opportunities
-- Analyze payment method adoption
-- Study social media strategies
-- Track industry trends
-
-### **Business Intelligence**
-- Competitive benchmarking
-- Customer FAQ pattern analysis
-- Brand positioning research
-- Market entry research
+### **Expected Results**
+For a successful extraction, you should see:
+- ✅ `success: true`
+- ✅ `total_products > 0`
+- ✅ Product array with titles and prices
+- ✅ At least one social media handle
+- ✅ Data stored in SQLite database
 
 ## ⚙️ **Configuration**
 
-### **Environment Variables**
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DATABASE_URL` | Database connection string | `sqlite:///./shopify_insights.db` |
-| `OPENAI_API_KEY` | OpenAI API key for AI features | `your_openai_api_key_here` |
-| `LOG_LEVEL` | Logging level | `INFO` |
-| `API_PORT` | API server port | `8000` |
-| `REQUEST_TIMEOUT` | HTTP request timeout | `30` |
-| `MAX_PRODUCTS_PER_STORE` | Product extraction limit | `1000` |
-| `ENABLE_AI_ENHANCEMENT` | Enable AI features | `false` |
-
-### **Feature Flags**
+### **Environment Variables (.env file)**
 ```bash
-# Enable/disable features in .env
-ENABLE_COMPETITOR_ANALYSIS=true
-ENABLE_AI_ENHANCEMENT=false
-ENABLE_CACHING=false
+DATABASE_URL=sqlite:///./shopify_insights.db
+API_HOST=127.0.0.1
+API_PORT=8000
+LOG_LEVEL=INFO
+REQUEST_TIMEOUT=30
 ```
 
-## 🚀 **Deployment**
-
-### **Docker Deployment**
-```bash
-# Build and run
-docker build -t shopify-insights .
-docker run -p 8000:8000 shopify-insights
-
-# Or use docker-compose
-docker-compose up --build
+### **Required Python Packages**
+```
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+requests==2.31.0
+beautifulsoup4==4.12.2
+lxml==6.0.0
+python-dotenv==1.0.0
+sqlalchemy==2.0.23
 ```
 
-### **Production Deployment**
-```bash
-# Install production dependencies
-pip install gunicorn
-
-# Run with Gunicorn
-gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker
-
-# Or with systemd service
-sudo systemctl start shopify-insights
-```
-
-## 🔧 **Development**
-
-### **Project Setup**
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Setup pre-commit hooks
-pre-commit install
-
-# Run linting
-flake8 app/
-black app/
-```
-
-### **Adding New Features**
-1. **Create models** in `app/models/`
-2. **Add business logic** in `app/services/`
-3. **Update database models** if needed
-4. **Add API endpoints** in `main.py`
-5. **Write tests** in `tests/`
-
-### **Code Quality**
-- **Type hints** throughout codebase
-- **Comprehensive error handling**
-- **Structured logging**
-- **Clean architecture** principles
-- **SOLID design** patterns
-
-## 📊 **Performance**
-
-### **Optimization Features**
-- **Background processing** for database operations
-- **Connection pooling** for database efficiency
-- **Request rate limiting** to prevent overload
-- **Efficient batch operations** for bulk data
-- **Asynchronous processing** where applicable
-
-### **Monitoring**
-- **Health check endpoints** for uptime monitoring
-- **Structured logging** for debugging
-- **Request/response metrics** 
-- **Error tracking** and reporting
-
-## 🤝 **Contributing**
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-### **Development Guidelines**
-- Follow **PEP 8** style guidelines
-- Add **type hints** for all functions
-- Include **docstrings** for public methods
-- Write **tests** for new features
-- Update **documentation** as needed
-
-## 🐛 **Troubleshooting**
+## 🔧 **Troubleshooting**
 
 ### **Common Issues**
 
-**Database Connection Error**
+**Application won't start:**
 ```bash
-# Check if database file exists
-ls -la shopify_insights.db
-
-# Test connection
-python test_simple_sqlite.py
-```
-
-**Import Errors**
-```bash
-# Ensure you're in the right directory
-pwd
+# Check if virtual environment is activated
+# Should see (venv) in your prompt
 
 # Reinstall dependencies
-pip install -r requirements.txt
+pip install fastapi uvicorn pydantic requests beautifulsoup4 lxml python-dotenv sqlalchemy
 ```
 
-**Port Already in Use**
+**Import errors:**
 ```bash
-# Change port in .env
-API_PORT=8001
-
-# Or kill existing process
-lsof -ti:8000 | xargs kill -9
+# Make sure all packages are installed
+pip list | grep fastapi
+pip list | grep beautifulsoup4
 ```
 
-**Website Not Accessible**
+**Extraction fails:**
 ```bash
-# Try with different Shopify stores
-curl -X POST "http://localhost:8000/api/v1/extract-insights" \
-     -d '{"website_url": "https://allbirds.com"}'
+# Check application logs in terminal
+# Try with a different Shopify store
+# Ensure internet connection is working
 ```
 
-### **Debug Mode**
+**Database issues:**
 ```bash
-# Enable debug logging
-LOG_LEVEL=DEBUG
-
-# Enable SQL debugging  
-SQL_DEBUG=true
+# Database file will be created automatically
+# Check if shopify_insights.db exists in project folder
+# Try restarting the application
 ```
+
+## 📊 **What Gets Extracted**
+
+### **Product Information**
+- Product ID and title
+- Product handle (URL slug)
+- Vendor/brand name
+- Product type/category
+- Pricing information
+- Product variants
+- Creation/update timestamps
+
+### **Social Media Handles**
+- Instagram profiles
+- Facebook pages
+- Twitter accounts
+- TikTok profiles
+- YouTube channels
+- LinkedIn pages
+
+### **Contact Information**
+- Email addresses
+- Phone numbers (when available)
+
+### **Brand Details**
+- Brand/store name
+- Domain information
+- Total product count
+- Extraction metadata
+
+## 🎯 **Use Cases**
+
+- **Competitor Research** - Analyze competitor product catalogs and pricing
+- **Market Analysis** - Study product trends across multiple stores
+- **Lead Generation** - Find contact information for business outreach
+- **Social Media Research** - Discover brand social media presence
+- **E-commerce Intelligence** - Gather data for business decisions
+
+## ⚠️ **Limitations**
+
+- **Rate Limiting** - Some stores may block rapid requests
+- **Dynamic Content** - JavaScript-rendered content may not be captured
+- **Site Structure** - Results depend on standard Shopify structure
+- **Large Stores** - Very large catalogs may take longer to process
+- **Network Dependent** - Requires stable internet connection
 
 ## 📄 **License**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
-## 🙏 **Acknowledgments**
+## 🤝 **Contributing**
 
-- **FastAPI** for the excellent web framework
-- **Beautiful Soup** for HTML parsing capabilities
-- **SQLAlchemy** for robust database operations  
-- **OpenAI** for AI-powered enhancements
-- **Pydantic** for data validation
-- **Shopify** ecosystem for inspiration
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test the changes
+5. Submit a pull request
 
 ## 📞 **Support**
 
-- **Documentation**: Check this README and API docs
-- **Issues**: Open a GitHub issue for bugs
-- **Questions**: Use GitHub discussions for questions
-- **Email**: [Contact team for urgent issues]
+- **Issues** - Open a GitHub issue for bugs
+- **Questions** - Check the API documentation at `/docs`
+- **Testing** - Use the health endpoint to verify the application is running
 
 ---
 
-**Happy Scraping! 🕷️✨**
-
-*Built with ❤️ for e-commerce intelligence and competitive analysis*
+**Built for e-commerce analysis and competitive research** 🚀
