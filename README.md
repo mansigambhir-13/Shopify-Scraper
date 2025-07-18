@@ -8,9 +8,6 @@
 A comprehensive Python application that extracts detailed insights from Shopify stores without using official APIs. Built with FastAPI, this application provides robust scraping capabilities, AI-powered analysis, and structured data storage.
 
 
-## API dashboard
-<img width="1856" height="903" alt="image" src="https://github.com/user-attachments/assets/50b2bac8-1e06-477b-b45c-41bebcf5a771" />
-
 ## 🎯 **Features**
 
 ### **Mandatory Features ✅**
