@@ -1,0 +1,38 @@
+2025-07-18 19:43:05 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:43:05 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:43:05 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:43:05 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:43:07 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:43:07 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:43:07 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:43:07 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:43:08 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:43:08 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:43:08 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:43:08 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:43:08 - app.database.database - INFO - init_db:41 - Database tables created successfully
+2025-07-18 19:43:08 - main - INFO - startup_event:44 - Database initialized successfully
+2025-07-18 19:50:10 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:50:10 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:50:10 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:50:10 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:50:11 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:50:11 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:50:11 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:50:11 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:50:11 - app.database.database - INFO - init_db:41 - Database tables created successfully
+2025-07-18 19:50:11 - main - INFO - startup_event:44 - Database initialized successfully
+2025-07-18 19:50:23 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:50:23 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:50:23 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:50:23 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:50:25 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:50:25 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:50:25 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:50:25 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:50:25 - app - INFO - setup_logger:80 - ==================================================
+2025-07-18 19:50:25 - app - INFO - setup_logger:81 - Shopify Store Insights Fetcher - Starting Up
+2025-07-18 19:50:25 - app - INFO - setup_logger:82 - Log Level: INFO
+2025-07-18 19:50:25 - app - INFO - setup_logger:83 - ==================================================
+2025-07-18 19:50:25 - app.database.database - INFO - init_db:41 - Database tables created successfully
+2025-07-18 19:50:25 - main - INFO - startup_event:44 - Database initialized successfully
